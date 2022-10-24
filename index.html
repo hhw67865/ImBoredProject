@@ -1,16 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <script defer src="script.js"></script>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>I'm Bored</title>
+        <script defer src="script.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+<!-- 
+        <header>
 
-<header>
+        </header> -->
 
-</header>
-<body>
+        <div class="main-container">
+            
+            <div class="welcome-page">
+                <h1> Hey, what's your name?</h1>
+                <form id="welcomeForm">
+                    <input type="text" id="name" placeholder="First Name">
+                    <input type="submit" value="Welcome">
+                </form>
+            </div>
+            <!-- “education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork" -->
+            <div class="category-page hide">
+                <h1>Watchya in the mood for?</h1>
+                <div class="grid-container">
+                    <div class="grid-item" id="education">
+                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
+                    </div>
+                    <div class="grid-item" id="recreational">
+                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
+                    </div>
+                    <div class="grid-item" id="social">
+                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
+                    </div>  
+                    <div class="grid-item" id="diy">
+                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
+                    </div>
+                    <div class="grid-item" id="charity">
+                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
+                    </div>
+                    <div class="grid-item" id="cooking">
+                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
+                    </div>  
+                    <div class="grid-item" id="relaxation">
+                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
+                    </div>
+                    <div class="grid-item" id="music">
+                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
+                    </div>
+                    <div class="grid-item" id="busywork">
+                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
+                    </div>  
+                </div>
+            </div>
+<!-- "participants", "price", "accessibility" -->
+            <div class="people-page hide">
+                <h1>How many are ya?</h1>
+                <div id="game"></div>
+            </div>
+            <div class="price-page hide">
+                <span class="money">Free</span>
+                <span class="money">$</span>
+            </div>
 
-</body>
+            <div class="activity-display hide">
+                <div class="activity-info"></div>
+            </div>
+            
+        </div>
+        <!-- <script>
+            let username;
 
+            //WELCOME FORM EVENT LISTENER
+            const welcomeForm = document.querySelector("#welcomeForm");
+            welcomeForm.addEventListener("submit", e => {
+                e.preventDefault();
+                const welcomePage = document.querySelector(".welcome-page");
+                welcomePage.classList.add("hide");
+
+                const categoryPage = document.querySelector(".category-page");
+                categoryPage.classList.remove("hide");
+
+                let username = e.target.name.value;
+                // console.log(username);
+
+                welcomeForm.reset();
+
+                const body = document.querySelector("body");
+                const mainScript = document.createElement("script");
+                mainScript.src = "mainscript.js"
+                body.append(mainScript);
+
+
+            })
+
+        </script> -->
+    </body>
 </html>

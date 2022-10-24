@@ -1,0 +1,27 @@
+/* h1 {
+    color: orange; 
+} */
+body {
+    background-color: rgb(162, 211, 253);
+}
+.main-container {
+    
+}
+
+.hide {
+    display: none;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /* background-color: #2196F3; */
+    padding: 10px;
+  }
+
+  .grid-item {
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
