@@ -125,7 +125,7 @@ function gridImageEventListener (image){
     image.addEventListener("click", () => {
 
         const username = document.querySelector("#username").innerHTML;
-        headerText.innerHTML = `How many are ya <span id = "username"${username}</span>?`;
+        headerText.innerHTML = `How many are ya <span id = "username">${username}</span>?`;
 
         categoryPage.classList.add("hide");
         peoplePage.classList.remove("hide");
@@ -151,7 +151,7 @@ function howManyPeopleButtons (){
 
     peopleButton.addEventListener("click", ()=> {
         const username = document.querySelector("#username").innerHTML;
-        headerText.innerHTML = `How much ya wanna spend <span id = "username"${username}</span>?`;
+        headerText.innerHTML = `How much ya wanna spend <span id = "username">${username}</span>?`;
 
         peoplePage.classList.add("hide");
         pricePage.classList.remove("hide");
