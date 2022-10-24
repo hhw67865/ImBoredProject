@@ -4,60 +4,25 @@
     <head>
         <meta charset="utf-8">
         <title>I'm Bored</title>
-        <script defer src="script.js"></script>
+        <script defer src="./script.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-<!-- 
-        <header>
-
-        </header> -->
-
         <div class="main-container">
-            
+            <h1 id = "header-text"></h1>
             <div class="welcome-page">
                 <h1> Hey, what's your name?</h1>
                 <form id="welcomeForm">
-                    <input type="text" id="name" placeholder="First Name">
-                    <input type="submit" value="Welcome">
+                    <input type="text" id="name" placeholder="First Name"><br><br>
+                    <label for="submit">Bored?</label><br>
+                    <input type="submit" value="I'm so bored">
                 </form>
             </div>
-            <!-- “education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork" -->
             <div class="category-page hide">
-                <h1>Watchya in the mood for?</h1>
                 <div class="grid-container">
-                    <div class="grid-item" id="education">
-                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
-                    </div>
-                    <div class="grid-item" id="recreational">
-                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
-                    </div>
-                    <div class="grid-item" id="social">
-                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
-                    </div>  
-                    <div class="grid-item" id="diy">
-                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
-                    </div>
-                    <div class="grid-item" id="charity">
-                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
-                    </div>
-                    <div class="grid-item" id="cooking">
-                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
-                    </div>  
-                    <div class="grid-item" id="relaxation">
-                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
-                    </div>
-                    <div class="grid-item" id="music">
-                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
-                    </div>
-                    <div class="grid-item" id="busywork">
-                        <img src="https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg" alt="nic" />
-                    </div>  
                 </div>
             </div>
-<!-- "participants", "price", "accessibility" -->
             <div class="people-page hide">
-                <h1>How many are ya?</h1>
                 <div id="game"></div>
             </div>
             <div class="price-page hide">
@@ -71,10 +36,9 @@
             
         </div>
         <!-- <script>
-            let username;
-
-            //WELCOME FORM EVENT LISTENER
             const welcomeForm = document.querySelector("#welcomeForm");
+            const body = document.querySelector("body");
+
             welcomeForm.addEventListener("submit", e => {
                 e.preventDefault();
                 const welcomePage = document.querySelector(".welcome-page");
@@ -83,19 +47,27 @@
                 const categoryPage = document.querySelector(".category-page");
                 categoryPage.classList.remove("hide");
 
-                let username = e.target.name.value;
-                // console.log(username);
+                const username = e.target.name.value;
+            
+                // const pName = document.createElement("p");
+                // pName.textContent = username;
+                // pName.classList.add("hide");
+
+                const header = document.createElement("p");
+                header.innerHTML = `<h1 id="test">${username}</h1>`;
+                body.append(header);
+                // header.textContent = `Whatchya in the mood for ${username}`;
+
 
                 welcomeForm.reset();
 
-                const body = document.querySelector("body");
-                const mainScript = document.createElement("script");
-                mainScript.src = "mainscript.js"
-                body.append(mainScript);
+                const script = document.createElement("script");
+                script.src = "script.js"
 
-
-            })
+            });
 
         </script> -->
+
+
     </body>
 </html>
