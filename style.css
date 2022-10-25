@@ -15,6 +15,9 @@ body {
     background-color: #fff;
     margin-top: 50px;
 }
+h1 {
+  font-family: 'Press Start 2P', cursive;
+}
 
 .hide {
     display: none;

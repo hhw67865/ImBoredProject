@@ -192,8 +192,17 @@ function howMuchMoneyButton () {
                 const activityType = boredActivity.type;
                 const activityDescription = boredActivity.activity;
                 const activityPrice = boredActivity.price;
-                const activity_h2 = querySelector('#activity');
-                activity_h2.innerText = activityDescription;
+                const activity_h2 = document.querySelector('#activity');
+
+                if (boredActivity.activity !== undefined){
+                    activity_h2.innerText = activityDescription;
+                } else {
+                    activity_h2.outerHTML = `<a href="https://www.dictionary.com/">here ya go, do some light reading!</a>`;
+                }
+
+                
+                // const activity_h2 = document.querySelector('#activity');
+                // activity_h2.innerText = activityDescription;
 
             })
 
