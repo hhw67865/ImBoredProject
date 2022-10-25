@@ -78,12 +78,18 @@ function welcomeFormEvent () {
         categoryPage.classList.remove("hide");
     
         let username = e.target.name.value;
-        // const pName = document.createElement("p");
-        // pName.textContent = username;
-        // pName.classList.add("hide");
-    
-        headerText.innerHTML = `Whatchya in the mood for <span id = "username">${username}</span>?`;
-    
+        
+        //HEADERS
+        const categoryHeader = document.querySelector("#category-page-header");
+        categoryHeader.innerHTML = `Whatchya in the mood for <span id = "username">${username}</span>?`
+        const peopleHeader = document.querySelector("#people-page-header");
+        peopleHeader.innerHTML = `How many people are ya <span id = "username">${username}</span>?`
+        const priceHeader = document.querySelector("#price-page-header");
+        priceHeader.innerHTML = `How much ya wanna spend <span id = "username">${username}</span>?`
+        const activityHeader = document.querySelector("#activity-page-header");
+        activityHeader.innerHTML = `Here's a good activity for ya <span id = "username">${username}</span>!`
+
+
         welcomeForm.reset();
 
         //CREATE IMAGES FOR NEXT PAGE
@@ -123,10 +129,6 @@ function createGridImages (){
 function gridImageEventListener (image){
     
     image.addEventListener("click", () => {
-
-        const username = document.querySelector("#username").innerHTML;
-        headerText.innerHTML = `How many are ya <span id = "username">${username}</span>?`;
-
         categoryPage.classList.add("hide");
         peoplePage.classList.remove("hide");
 
@@ -150,9 +152,6 @@ function howManyPeopleButtons (){
     const peopleButton = document.querySelector(".people-page button");
 
     peopleButton.addEventListener("click", ()=> {
-        const username = document.querySelector("#username").innerHTML;
-        headerText.innerHTML = `How much ya wanna spend <span id = "username">${username}</span>?`;
-
         peoplePage.classList.add("hide");
         pricePage.classList.remove("hide");
 
