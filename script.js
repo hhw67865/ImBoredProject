@@ -1,14 +1,15 @@
 
 
 //GLOBAL VARIABLES
-
+const selections = [];
 const welcomeForm = document.querySelector("#welcomeForm");
 const gridContainer = document.querySelector(".grid-container");
-
 const categoryPage = document.querySelector(".category-page");
 const peoplePage = document.querySelector(".people-page");
 const pricePage = document.querySelector(".price-page");
+const activityDisplay = document.querySelector(".activity-display")
 const headerText = document.querySelector("#header-text");
+const activityDisplayInfo = document.querySelector(".activity-info");
 
 const categories = [
     {
@@ -51,17 +52,9 @@ const categories = [
 
 
 //FETCH BORED API 
-fetch("http://www.boredapi.com/api/activity")
-.then(response => response.json())
-.then(boredActivity => {
-    console.log(boredActivity);
-    const activityType = boredActivity.type;
-    const activityDescription = boredActivity.activity;
-    const activityPrice = boredActivity.price;
 
-    
 
-})
+
 
 welcomeFormEvent();
 const username = document.querySelector("#username");
@@ -131,6 +124,8 @@ function gridImageEventListener (image){
     image.addEventListener("click", () => {
         categoryPage.classList.add("hide");
         peoplePage.classList.remove("hide");
+        selections.push(image.id);
+
 
         howManyPeopleButtons()
     })
@@ -138,23 +133,79 @@ function gridImageEventListener (image){
 
 //HOW MANY PEOPLE BUTTONS + EVENT LISTENER
 function howManyPeopleButtons (){
-    const pOne = document.createElement("p");
-    pOne.innerHTML = `<button id="1">Just Me!</button>`;
+    const divOne = document.createElement("div");
+    divOne.innerHTML = `<button id="1">Just Me!</button>`;
 
-    const pTwo = document.createElement("p");
-    pTwo.innerHTML = `<button id="2">Me & a buddy!</button>`;
+    const divTwo = document.createElement("div");
+    divTwo.innerHTML = `<button id="2">Me & a buddy!</button>`;
 
-    const pThree = document.createElement("p");
-    pThree.innerHTML = `<button id="3">We're a whole group!</button>`;
+    const divThree = document.createElement("div");
+    
+    divThree.innerHTML = `<button id=${getRandomItem()}>We're a whole group!</button>`;
 
-    peoplePage.append(pOne, pTwo, pThree);
+    peoplePage.append(divOne, divTwo, divThree);
 
-    const peopleButton = document.querySelector(".people-page button");
+    const peopleButton = document.querySelectorAll(".people-page button");
+    peopleButton.forEach((button)=> {
 
-    peopleButton.addEventListener("click", ()=> {
-        peoplePage.classList.add("hide");
-        pricePage.classList.remove("hide");
+        button.addEventListener("click", ()=> {
+            peoplePage.classList.add("hide");
+            pricePage.classList.remove("hide");
 
+            selections.push(button.id);
+            howMuchMoneyButton();
+
+        })
     })
+    
 }
 
+function howMuchMoneyButton () {
+    const divFree = document.createElement("div");
+    divFree.innerHTML = `<button id="free">No Money</button>`;
+
+    const divMoney = document.createElement("div");
+    divMoney.innerHTML = `<button id="money">$</button>`;
+
+    pricePage.append(divFree, divMoney);
+
+    const moneyButton = document.querySelectorAll(".price-page button");
+
+
+    moneyButton.forEach((button)=> {
+
+        button.addEventListener("click", ()=> {
+            pricePage.classList.add("hide");
+            activityDisplay.classList.remove("hide");
+            let cost;
+            if (moneyButton.id ==="free"){
+                cost = "price=0.0"
+            } else if (moneyButton.id === "money"){
+                cost = "minprice=0.1&maxprice=1"
+            };
+            selections.push(cost);
+                    
+            //PUT FETCH
+            fetch(`http://www.boredapi.com/api/activity?type=${selections.shift()}&participants=${selections.shift()}&${selections.shift()}`)
+            .then(response => response.json())
+            .then(boredActivity => {
+                const activityType = boredActivity.type;
+                const activityDescription = boredActivity.activity;
+                const activityPrice = boredActivity.price;
+                const activity_h2 = querySelector('#activity');
+                activity_h2.innerText = activityDescription;
+
+            })
+
+        })
+    })
+
+}
+
+
+
+
+function getRandomItem() {
+    const items = [3, 4, 5, 8 ];
+    return items[Math.floor(Math.random() * items.length)];
+}

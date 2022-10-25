@@ -3,10 +3,17 @@
 } */
 body {
     background-color: rgb(162, 211, 253);
+    display: flex;
+    justify-content: center;
 }
 .main-container {
     text-align: center;
     padding: 3em;
+    box-shadow: rgba(0,0,0,0.4) 0px 10px 20px;
+    max-width: 800px;
+    width: 100%;
+    background-color: #fff;
+    margin-top: 50px;
 }
 
 .hide {

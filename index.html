@@ -28,49 +28,16 @@
             </div>
             <div class="price-page hide">
                 <h1 id="price-page-header"></h1>
-                <span class="money">Free</span>
-                <span class="money">$</span>
             </div>
 
             <div class="activity-display hide">
                 <h1 id="activity-page-header"></h1>
-                <div class="activity-info"></div>
+                <div class="activity-info">
+                    <h1>Here's an activity for you!</h1>
+                    <h2 id="activity"></h2>
+                </div>
             </div>
             
         </div>
-        <!-- <script>
-            const welcomeForm = document.querySelector("#welcomeForm");
-            const body = document.querySelector("body");
-
-            welcomeForm.addEventListener("submit", e => {
-                e.preventDefault();
-                const welcomePage = document.querySelector(".welcome-page");
-                welcomePage.classList.add("hide");
-
-                const categoryPage = document.querySelector(".category-page");
-                categoryPage.classList.remove("hide");
-
-                const username = e.target.name.value;
-            
-                // const pName = document.createElement("p");
-                // pName.textContent = username;
-                // pName.classList.add("hide");
-
-                const header = document.createElement("p");
-                header.innerHTML = `<h1 id="test">${username}</h1>`;
-                body.append(header);
-                // header.textContent = `Whatchya in the mood for ${username}`;
-
-
-                welcomeForm.reset();
-
-                const script = document.createElement("script");
-                script.src = "script.js"
-
-            });
-
-        </script> -->
-
-
     </body>
 </html>
