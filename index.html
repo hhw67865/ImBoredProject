@@ -2,9 +2,7 @@
 <html lang="en">
 
     <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap" rel="stylesheet">
         <meta charset="utf-8">
         <title>I'm Bored</title>
         <script defer src="./script.js"></script>
@@ -13,11 +11,14 @@
     <body>
         <div class="main-container">
             <div class="welcome-page">
-                <h1> Hey, what's your name?</h1>
+                <h1> Hey there, what's your name?</h1>
+                <img src="./imgs/star-pixel.gif" class="star" alt="star" width="50px" />
+                <img src="./imgs/mega-man-megaman-accords.gif" alt="Mega Man Gif" width="80px"/>
+                <img src="./imgs/star-pixel.gif" class="star" alt="star" width="50px" />
                 <form id="welcomeForm">
-                    <input type="text" id="name" placeholder="First Name"><br><br>
-                    <label for="submit">Bored?</label><br>
-                    <input type="submit" value="I'm so bored">
+                    <input type="text" id="name" placeholder="First name"><br><br>
+                    <label for="submit" id="submit-label">Are you bored?</label><br>
+                    <input type="submit" id="submit-button" class="button" value="I'm so bored">
                 </form>
             </div>
             <div class="category-page hide">

@@ -1,7 +1,7 @@
 
-
 //GLOBAL VARIABLES
 const selections = [];
+const welcomePage = document.querySelector(".welcome-page");
 const welcomeForm = document.querySelector("#welcomeForm");
 const gridContainer = document.querySelector(".grid-container");
 const categoryPage = document.querySelector(".category-page");
@@ -11,60 +11,62 @@ const activityDisplay = document.querySelector(".activity-display")
 const headerText = document.querySelector("#header-text");
 const activityDisplayInfo = document.querySelector(".activity-info");
 
+const submitButton = document.querySelector("#submit-button");
+const username = document.querySelector("#username");
+let firstTime = true;
+
+
+
 const categories = [
     {
         type: "education",
-        image: "https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg"
+        image: "./imgs/education.png"
     },
     {
         type: "recreational",
-        image: "https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg"
+        image: "./imgs/recreational.png"
     },
     {
         type: "social",
-        image: "https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg"
+        image: "./imgs/social.png"
     },
     {
         type: "diy",
-        image: "https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg"
+        image: "./imgs/diy.png"
     },
     {
         type: "charity",
-        image: "https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg"
+        image: "./imgs/charity.png"
     },
     {
         type: "cooking",
-        image: "https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg"
+        image: "./imgs/cooking.png"
     },
     {
         type: "relaxation",
-        image: "https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg"
+        image: "./imgs/relaxation.png"
     },
     {
         type: "music",
-        image: "https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg"
+        image: "./imgs/music.png"
     },
     {
         type: "busywork",
-        image: "https://www.syfy.com/sites/syfy/files/styles/blog-post-embedded--tablet-1_5x/public/2019/10/faceoff_cage.jpg"
+        image: "./imgs/busywork.png"
     }
 ]
 
-
-//FETCH BORED API 
-
-
-
-
+//INITIATE FORM + SUBMIT BUTTON LISTENERS
 welcomeFormEvent();
-const username = document.querySelector("#username");
+buttonTextEnter (submitButton, "Help!");
+buttonTextLeave (submitButton, "I'm so bored");
 
 
 //WELCOME FORM EVENT LISTENER
 function welcomeFormEvent () {
     welcomeForm.addEventListener("submit", e => {
         e.preventDefault();
-        const welcomePage = document.querySelector(".welcome-page");
+        
         welcomePage.classList.add("hide");
     
         const categoryPage = document.querySelector(".category-page");
@@ -92,9 +94,6 @@ function welcomeFormEvent () {
 }
 
 
-
-
-
 //CREATE IMAGES FOR CATEGORY ARRAY OBJECTS
 function createGridImages (){ 
     const username = document.querySelector("#username");
@@ -105,27 +104,26 @@ function createGridImages (){
         image.src = category.image;
         image.id = category.type;
 
-        const p = document.createElement("p");
-        p.textContent = category.type;
-
-        divGridItem.append(image, p)
+        divGridItem.append(image)
         divGridItem.classList.add("grid-item");
         
         gridContainer.append(divGridItem);
 
-        gridImageEventListener(image); 
+        const p = document.createElement("p");
+        p.classList.add("grid-p");
+        gridDisplayText (image, p, category, divGridItem)
 
+        gridImageEventListener(p, image); 
     })
 }
 
 //CLICK EVENT ON GRID IMAGES 
-function gridImageEventListener (image){
+function gridImageEventListener (p, image){
     
-    image.addEventListener("click", () => {
+    p.addEventListener("click", () => {
         categoryPage.classList.add("hide");
         peoplePage.classList.remove("hide");
         selections.push(image.id);
-
 
         howManyPeopleButtons()
     })
@@ -133,33 +131,110 @@ function gridImageEventListener (image){
 
 //HOW MANY PEOPLE BUTTONS + EVENT LISTENER
 function howManyPeopleButtons (){
-    const divOne = document.createElement("div");
-    divOne.innerHTML = `<button id="1">Just Me!</button>`;
+    const game = document.querySelector("#game");
+    const single = document.createElement("img");
+    single.className = "gameImg";
+    single.src = "imgs/single.png";
+    single.style = "bottom: 45%; left: 0%; height: 100px; width: auto;"
+    const pair = document.createElement("img");
+    pair.className = "gameImg";
+    pair.src = "imgs/pair.png"
+    pair.style = "bottom: 80%; left: 45%; height: 100px; width: auto;"
+    const group = document.createElement("img");
+    group.className = "gameImg";
+    group.src = "imgs/group.png"
+    group.style = "bottom: 45%; left: 80%; height: 100px; width: auto;"
+    const divPlayer = document.createElement("div");
+    divPlayer.id = "player";
+    divPlayer.style = "bottom: 20%; left: 50%;" 
+    game.append(single, pair, group, divPlayer);
 
-    const divTwo = document.createElement("div");
-    divTwo.innerHTML = `<button id="2">Me & a buddy!</button>`;
-
-    const divThree = document.createElement("div");
     
-    divThree.innerHTML = `<button id=${getRandomItem()}>We're a whole group!</button>`;
+    document.addEventListener("keydown", e=>{
+        if (!peoplePage.classList.contains("hide"))
+        {
+            if (e.key ==="ArrowLeft") {             
+                divPlayer.style.transform = "scaleX(-1)";
+                const leftNumbers = divPlayer.style.left.replace("%", "");
+                const leftMove = parseInt(leftNumbers, 10);
+                const bottomNumbers = divPlayer.style.bottom.replace("%", "");
+                const bottomMove = parseInt(bottomNumbers, 10);
+                if (leftMove>0) {
+                    divPlayer.style.left = (`${leftMove-5}%`);                    
+                }                                       
+            }
+            if (e.key ==="ArrowRight") {            
+                divPlayer.style.transform = "";
+                const numbers = divPlayer.style.left.replace("%", "");
+                const move = parseInt(numbers, 10);
+                
+                if (move<90){
+                divPlayer.style.left = (`${move+5}%`);
+                
+                }  
+                        
 
-    peoplePage.append(divOne, divTwo, divThree);
+            }
+            if (e.key ==="ArrowDown") {
 
-    const peopleButton = document.querySelectorAll(".people-page button");
-    peopleButton.forEach((button)=> {
+                const numbers = divPlayer.style.bottom.replace("%", "");
+                const move = parseInt(numbers, 10);
+                if (move>0) {
+                divPlayer.style.bottom = (`${move-5}%`);
+                }
 
-        button.addEventListener("click", ()=> {
-            peoplePage.classList.add("hide");
-            pricePage.classList.remove("hide");
+            }
+            if (e.key ==="ArrowUp") {
 
-            selections.push(button.id);
-            howMuchMoneyButton();
+                const numbers = divPlayer.style.bottom.replace("%", "");
+                const move = parseInt(numbers, 10);
+                if (move<90){
+                    divPlayer.style.bottom = (`${move+5}%`);
+                }
+            
+                
 
-        })
+            }
+            //Player jumps on Single
+            if(divPlayer.style.left==="5%" && divPlayer.style.bottom>="45%" && divPlayer.style.bottom<="55%") {
+                            
+                
+                peoplePage.classList.add("hide");
+                pricePage.classList.remove("hide");
+                selections.push("1");
+                howMuchMoneyButton();
+                game.innerHTML= "";                                               
+            }
+            //Player jumps on Pair
+            if(divPlayer.style.left>="45%" && divPlayer.style.left<="55%" && divPlayer.style.bottom>="80%" && divPlayer.style.bottom<="90%") {
+        
+                
+                peoplePage.classList.add("hide");
+                pricePage.classList.remove("hide");
+                selections.push("2");
+                howMuchMoneyButton();
+                game.innerHTML= "";
+                                                    
+            }
+            //Player jumps on Group
+            if(divPlayer.style.left>="80%" && divPlayer.style.left<="90%" && divPlayer.style.bottom>="45%" && divPlayer.style.bottom<="55%") {
+                            
+                
+                peoplePage.classList.add("hide");
+                pricePage.classList.remove("hide");
+                selections.push(`${getRandomItem()}`);                
+                howMuchMoneyButton();     
+                game.innerHTML= "";
+                                                
+            }
+                
+
+        }
     })
     
 }
 
+//HOW MUCH MONEY PAGE
 function howMuchMoneyButton () {
     const divFree = document.createElement("div");
     divFree.innerHTML = `<button id="free">No Money</button>`;
@@ -170,7 +245,11 @@ function howMuchMoneyButton () {
     pricePage.append(divFree, divMoney);
 
     const moneyButton = document.querySelectorAll(".price-page button");
+    buttonTextEnter(moneyButton[0]);
+    buttonTextLeave(moneyButton[0]);
 
+    buttonTextEnter(moneyButton[1]);
+    buttonTextLeave(moneyButton[1]);
 
     moneyButton.forEach((button)=> {
 
@@ -185,27 +264,38 @@ function howMuchMoneyButton () {
             };
             selections.push(cost);
                     
-            //PUT FETCH
+            //FETCH BORED API
             fetch(`http://www.boredapi.com/api/activity?type=${selections.shift()}&participants=${selections.shift()}&${selections.shift()}`)
             .then(response => response.json())
             .then(boredActivity => {
                 const activityType = boredActivity.type;
                 const activityDescription = boredActivity.activity;
                 const activityPrice = boredActivity.price;
+                
                 const activity_h2 = document.querySelector('#activity');
 
                 if (boredActivity.activity !== undefined){
                     activity_h2.innerText = activityDescription;
                 } else {
                     activity_h2.outerHTML = `<a href="https://www.dictionary.com/">here ya go, do some light reading!</a>`;
-                }
-
-                
-                // const activity_h2 = document.querySelector('#activity');
-                // activity_h2.innerText = activityDescription;
+                }  
 
             })
 
+            const restartButton = document.createElement("button");
+            const div = document.createElement("div");
+            restartButton.textContent = "Give me another idea!";
+            buttonTextEnter(restartButton);
+            buttonTextLeave(restartButton);
+            div.append(restartButton);
+            activityDisplayInfo.append(div);
+            
+            
+
+            restartButton.addEventListener("click", ()=> {
+                location.reload();
+
+            })
         })
     })
 
@@ -213,8 +303,45 @@ function howMuchMoneyButton () {
 
 
 
-
+//RANDOM NUMBER FOR 3+ PLAYERS
 function getRandomItem() {
     const items = [3, 4, 5, 8 ];
     return items[Math.floor(Math.random() * items.length)];
+}
+
+
+//GLOBAL BUTTON ON MOUSEENTER 
+function buttonTextEnter(button, buttonText = "") {
+    button.addEventListener("mouseenter", ()=> {
+        button.classList.remove("button")
+        button.classList.add("submit-button-hover")
+        button.value = buttonText; 
+    })
+}
+
+//GLOBAL BUTTON ON MOUSELEAVE
+function buttonTextLeave(button, buttonText = "") {
+    button.addEventListener("mouseleave", ()=> {
+        button.classList.remove("submit-button-hover")
+        button.classList.add("button")
+        button.value = buttonText;
+    })
+}
+
+
+
+
+
+//CATEGORY PAGE DISPLAY TEXT ON MOUSEOVER 
+function gridDisplayText (image, p, category, divGridItem) {
+    image.addEventListener("mouseover", ()=> {
+        p.textContent = category.type;
+        divGridItem.append(p);
+        divGridItem.removeChild(image);
+
+        setTimeout(()=> {
+            divGridItem.append(image);
+            divGridItem.removeChild(p);
+        }, 500);
+    })
 }
