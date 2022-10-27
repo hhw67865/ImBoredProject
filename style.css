@@ -60,7 +60,7 @@ form .button, button {
   border: none;
   font-size: 1em;
   letter-spacing: 1px;
-  width: 150px;
+  width: 210px;
 }
 
 .submit-button-hover{
@@ -71,7 +71,7 @@ form .button, button {
   border: none;
   font-size: 1em;
   letter-spacing: 1px;
-  width: 150px;
+  width: 210px;
   cursor: url('imgs/icons8-space-fighter-24.png'), auto;
   font-weight: bold;
   text-transform: uppercase;
@@ -97,7 +97,7 @@ label {
 }
 
 .grid-item {
-
+  padding: 10px;
   font-weight: bold;
   width: 270px;
   height: 200px;
@@ -112,10 +112,10 @@ label {
 
 .grid-p {
   color: rgb(21, 21, 162);
-  padding: 0px;
+  padding: 20px;
   margin: 0px;
   font-family: 'Press Start 2P';
-  font-size: 1.2em;
+  font-size: 1.3em;
   text-transform: capitalize;
   cursor: url('imgs/icons8-space-fighter-24.png'), auto;
 }
@@ -134,7 +134,7 @@ label {
   0%{     color: rgb(0, 0, 255);    }
   20%{    color: rgb(74, 74, 255); }
   40%{    color: rgb(114, 114, 248); }
-  60%{    color: rgb(153, 153, 255); }
+  60%{    color: rgb(153, 162, 255); }
   80%{    color: rgb(114, 114, 248);  }
   90%{    color: rgb(74, 74, 255);  }
   100%{   color: rgb(0, 0, 255);    }
@@ -159,6 +159,10 @@ label {
   background-color: blanchedalmond;
   padding: 20%;
   text-decoration: solid;
+}
+
+.activity-info a {
+  line-height: 1.8em;
 }
 
 /* Henry newly added css start */

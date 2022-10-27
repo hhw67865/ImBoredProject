@@ -18,40 +18,31 @@ let firstTime = true;
 
 
 const categories = [
-    {
-        type: "education",
+    {   type: "education",
         image: "./imgs/education.png"
     },
-    {
-        type: "recreational",
+    {   type: "recreational",
         image: "./imgs/recreational.png"
     },
-    {
-        type: "social",
+    {   type: "social",
         image: "./imgs/social.png"
     },
-    {
-        type: "diy",
+    {   type: "diy",
         image: "./imgs/diy.png"
     },
-    {
-        type: "charity",
+    {   type: "charity",
         image: "./imgs/charity.png"
     },
-    {
-        type: "cooking",
+    {   type: "cooking",
         image: "./imgs/cooking.png"
     },
-    {
-        type: "relaxation",
+    {   type: "relaxation",
         image: "./imgs/relaxation.png"
     },
-    {
-        type: "music",
+    {   type: "music",
         image: "./imgs/music.png"
     },
-    {
-        type: "busywork",
+    {   type: "busywork",
         image: "./imgs/busywork.png"
     }
 ]
@@ -60,6 +51,8 @@ const categories = [
 welcomeFormEvent();
 buttonTextEnter (submitButton, "Help!");
 buttonTextLeave (submitButton, "I'm so bored");
+
+
 
 
 //WELCOME FORM EVENT LISTENER
@@ -111,21 +104,23 @@ function createGridImages (){
 
         const p = document.createElement("p");
         p.classList.add("grid-p");
-        gridDisplayText (image, p, category, divGridItem)
 
+        gridDisplayText (image, p, category, divGridItem)
         gridImageEventListener(p, image); 
     })
 }
 
 //CLICK EVENT ON GRID IMAGES 
-function gridImageEventListener (p, image){
+function gridImageEventListener (divGridItem, image){
     
-    p.addEventListener("click", () => {
+    divGridItem.addEventListener("click", () => {
         categoryPage.classList.add("hide");
         peoplePage.classList.remove("hide");
         selections.push(image.id);
 
         howManyPeopleButtons()
+
+
     })
 }
 
@@ -150,7 +145,7 @@ function howManyPeopleButtons (){
     game.append(single, pair, group, divPlayer);
 
     
-    document.addEventListener("keydown", e=>{
+    document.addEventListener("keydown",(e)=>{
         if (!peoplePage.classList.contains("hide"))
         {
             if (e.key ==="ArrowLeft") {             
@@ -230,14 +225,15 @@ function howManyPeopleButtons (){
                 
 
         }
-    })
+    }) 
     
 }
 
 //HOW MUCH MONEY PAGE
 function howMuchMoneyButton () {
+    game.innerHTML = "";
     const divFree = document.createElement("div");
-    divFree.innerHTML = `<button id="free">No Money</button>`;
+    divFree.innerHTML = `<button id="free">No money</button>`;
 
     const divMoney = document.createElement("div");
     divMoney.innerHTML = `<button id="money">$</button>`;
@@ -245,11 +241,11 @@ function howMuchMoneyButton () {
     pricePage.append(divFree, divMoney);
 
     const moneyButton = document.querySelectorAll(".price-page button");
-    buttonTextEnter(moneyButton[0]);
-    buttonTextLeave(moneyButton[0]);
+    buttonTextEnter(moneyButton[0], "Free plz!");
+    buttonTextLeave(moneyButton[0], "No money" );
 
-    buttonTextEnter(moneyButton[1]);
-    buttonTextLeave(moneyButton[1]);
+    buttonTextEnter(moneyButton[1], "I got some dough!");
+    buttonTextLeave(moneyButton[1], "$");
 
     moneyButton.forEach((button)=> {
 
@@ -277,23 +273,24 @@ function howMuchMoneyButton () {
                 if (boredActivity.activity !== undefined){
                     activity_h2.innerText = activityDescription;
                 } else {
-                    activity_h2.outerHTML = `<a href="https://www.dictionary.com/">here ya go, do some light reading!</a>`;
+                    activity_h2.outerHTML = `<a href="https://www.dictionary.com/" target=_blank>Why don't ya do some light reading!</a>`;
                 }  
 
             })
 
             const restartButton = document.createElement("button");
             const div = document.createElement("div");
-            restartButton.textContent = "Give me another idea!";
-            buttonTextEnter(restartButton);
-            buttonTextLeave(restartButton);
+            restartButton.textContent = "Give me another idea!"
+            buttonTextEnter(restartButton, "I'm still bored");
+            buttonTextLeave(restartButton, "Give me another idea!");
             div.append(restartButton);
             activityDisplayInfo.append(div);
             
-            
 
+            // gridContainer.replaceChildren();
+            
             restartButton.addEventListener("click", ()=> {
-                location.reload();
+              location.reload()
 
             })
         })
@@ -315,7 +312,11 @@ function buttonTextEnter(button, buttonText = "") {
     button.addEventListener("mouseenter", ()=> {
         button.classList.remove("button")
         button.classList.add("submit-button-hover")
-        button.value = buttonText; 
+        if (button.id === "submit-button") {
+            button.value = buttonText; 
+        } else if (button.id !== "submit-button"){
+            button.innerHTML = buttonText;
+        }
     })
 }
 
@@ -324,7 +325,11 @@ function buttonTextLeave(button, buttonText = "") {
     button.addEventListener("mouseleave", ()=> {
         button.classList.remove("submit-button-hover")
         button.classList.add("button")
-        button.value = buttonText;
+        if (button.id === "submit-button") {
+            button.value = buttonText; 
+        } else if (button.id !== "submit-button"){
+            button.innerHTML = buttonText;
+        }
     })
 }
 
@@ -344,4 +349,12 @@ function gridDisplayText (image, p, category, divGridItem) {
             divGridItem.removeChild(p);
         }, 500);
     })
+}
+
+function reloadWebsite () {
+    activityDisplay.classList.add("hide")
+    welcomePage.classList.remove("hide");
+    welcomeFormEvent();
+    buttonTextEnter (submitButton, "Help!");
+    buttonTextLeave (submitButton, "I'm so bored");
 }
