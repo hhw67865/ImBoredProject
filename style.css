@@ -147,8 +147,13 @@ padding: 20%;
 font-stretch: ultra-expanded;
 }
 
+#activity-page-header {
+overflow-wrap: break-word;
+margin-bottom: 20px;
+}
+
 .activity-info button{
-margin-top: 50px;
+margin-top: 30px;
 width: 250px;
 height: auto;
 }
