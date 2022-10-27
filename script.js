@@ -18,31 +18,40 @@ let firstTime = true;
 
 
 const categories = [
-    {   type: "education",
+    {
+        type: "education",
         image: "./imgs/education.png"
     },
-    {   type: "recreational",
+    {
+        type: "recreational",
         image: "./imgs/recreational.png"
     },
-    {   type: "social",
+    {
+        type: "social",
         image: "./imgs/social.png"
     },
-    {   type: "diy",
+    {
+        type: "diy",
         image: "./imgs/diy.png"
     },
-    {   type: "charity",
+    {
+        type: "charity",
         image: "./imgs/charity.png"
     },
-    {   type: "cooking",
+    {
+        type: "cooking",
         image: "./imgs/cooking.png"
     },
-    {   type: "relaxation",
+    {
+        type: "relaxation",
         image: "./imgs/relaxation.png"
     },
-    {   type: "music",
+    {
+        type: "music",
         image: "./imgs/music.png"
     },
-    {   type: "busywork",
+    {
+        type: "busywork",
         image: "./imgs/busywork.png"
     }
 ]
@@ -51,9 +60,10 @@ const categories = [
 welcomeFormEvent();
 buttonTextEnter (submitButton, "Help!");
 buttonTextLeave (submitButton, "I'm so bored");
-
-
-
+createGridImages();
+howManyPeopleButtons()
+howMuchMoneyButton();
+createReset();
 
 //WELCOME FORM EVENT LISTENER
 function welcomeFormEvent () {
@@ -81,7 +91,7 @@ function welcomeFormEvent () {
         welcomeForm.reset();
 
         //CREATE IMAGES FOR NEXT PAGE
-        createGridImages();
+        
     
     });
 }
@@ -104,23 +114,21 @@ function createGridImages (){
 
         const p = document.createElement("p");
         p.classList.add("grid-p");
-
         gridDisplayText (image, p, category, divGridItem)
+
         gridImageEventListener(p, image); 
     })
 }
 
 //CLICK EVENT ON GRID IMAGES 
-function gridImageEventListener (divGridItem, image){
+function gridImageEventListener (p, image){
     
-    divGridItem.addEventListener("click", () => {
+    p.addEventListener("click", () => {
         categoryPage.classList.add("hide");
         peoplePage.classList.remove("hide");
         selections.push(image.id);
 
-        howManyPeopleButtons()
-
-
+        
     })
 }
 
@@ -145,7 +153,7 @@ function howManyPeopleButtons (){
     game.append(single, pair, group, divPlayer);
 
     
-    document.addEventListener("keydown",(e)=>{
+    document.addEventListener("keydown", e=>{
         if (!peoplePage.classList.contains("hide"))
         {
             if (e.key ==="ArrowLeft") {             
@@ -197,8 +205,8 @@ function howManyPeopleButtons (){
                 peoplePage.classList.add("hide");
                 pricePage.classList.remove("hide");
                 selections.push("1");
-                howMuchMoneyButton();
-                game.innerHTML= "";                                               
+                
+                divPlayer.style = "bottom: 20%; left: 50%;"                                               
             }
             //Player jumps on Pair
             if(divPlayer.style.left>="45%" && divPlayer.style.left<="55%" && divPlayer.style.bottom>="80%" && divPlayer.style.bottom<="90%") {
@@ -207,8 +215,8 @@ function howManyPeopleButtons (){
                 peoplePage.classList.add("hide");
                 pricePage.classList.remove("hide");
                 selections.push("2");
-                howMuchMoneyButton();
-                game.innerHTML= "";
+                
+                divPlayer.style = "bottom: 20%; left: 50%;"
                                                     
             }
             //Player jumps on Group
@@ -218,22 +226,21 @@ function howManyPeopleButtons (){
                 peoplePage.classList.add("hide");
                 pricePage.classList.remove("hide");
                 selections.push(`${getRandomItem()}`);                
-                howMuchMoneyButton();     
-                game.innerHTML= "";
+                     
+                divPlayer.style = "bottom: 20%; left: 50%;"
                                                 
             }
                 
 
         }
-    }) 
+    })
     
 }
 
 //HOW MUCH MONEY PAGE
 function howMuchMoneyButton () {
-    game.innerHTML = "";
     const divFree = document.createElement("div");
-    divFree.innerHTML = `<button id="free">No money</button>`;
+    divFree.innerHTML = `<button id="free">No Money</button>`;
 
     const divMoney = document.createElement("div");
     divMoney.innerHTML = `<button id="money">$</button>`;
@@ -273,29 +280,36 @@ function howMuchMoneyButton () {
                 if (boredActivity.activity !== undefined){
                     activity_h2.innerText = activityDescription;
                 } else {
-                    activity_h2.outerHTML = `<a href="https://www.dictionary.com/" target=_blank>Why don't ya do some light reading!</a>`;
+                    activity_h2.innerHTML = `<a href="https://www.dictionary.com/">here ya go, do some light reading!</a>`;
                 }  
 
             })
 
-            const restartButton = document.createElement("button");
+            
+        })
+    })
+
+}
+
+function createReset() {
+    const restartButton = document.createElement("button");
             const div = document.createElement("div");
-            restartButton.textContent = "Give me another idea!"
+            restartButton.textContent = "Give me another idea!";
             buttonTextEnter(restartButton, "I'm still bored");
             buttonTextLeave(restartButton, "Give me another idea!");
             div.append(restartButton);
             activityDisplayInfo.append(div);
             
-
-            // gridContainer.replaceChildren();
             
+
             restartButton.addEventListener("click", ()=> {
-              location.reload()
+                // location.reload();
+                activityDisplay.classList.add("hide");
+                welcomePage.classList.remove("hide");
+
+                
 
             })
-        })
-    })
-
 }
 
 
@@ -349,12 +363,4 @@ function gridDisplayText (image, p, category, divGridItem) {
             divGridItem.removeChild(p);
         }, 500);
     })
-}
-
-function reloadWebsite () {
-    activityDisplay.classList.add("hide")
-    welcomePage.classList.remove("hide");
-    welcomeFormEvent();
-    buttonTextEnter (submitButton, "Help!");
-    buttonTextLeave (submitButton, "I'm so bored");
 }

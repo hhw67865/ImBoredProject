@@ -1,193 +1,189 @@
 /* GLOBAL */
 body {
-    margin-top: 3em;
-    background-color: rgb(226, 238, 248);
-    display: flex;
-    justify-content: center;
-    font-family: 'Roboto';
-    cursor: url('imgs/icons8-space-fighter-24.png'), auto;
-    padding-bottom: 50px;
+  margin-top: 3em;
+  background-color: rgb(226, 238, 248);
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto';
+  cursor: url('imgs/icons8-space-fighter-24.png'), auto;
+  padding-bottom: 50px;
 }
 .main-container {
-    text-align: center;
-    padding: 3em;
-    box-shadow: rgba(96, 82, 252, 0.4) 0px 10px 30px;
-    max-width: 850px;
-    width: 100%;
-    background-color: rgb(251, 251, 251);
-    margin-top: 50px;
+  text-align: center;
+  padding: 3em;
+  box-shadow: rgba(96, 82, 252, 0.4) 0px 10px 30px;
+  max-width: 850px;
+  width: 100%;
+  background-color: rgb(251, 251, 251);
+  margin-top: 50px;
 }
 
 .hide {
-  display: none;
+display: none;
 }
 
 /* HEADERS */
 h1 {
-  font-family: 'Press Start 2P';
-  font-size: 2em;
-  color:rgb(21, 21, 162);
-  line-height: 1.6em;
+font-family: 'Press Start 2P';
+font-size: 2em;
+color:rgb(21, 21, 162);
+line-height: 1.6em;
 }
 
 #username {
-  animation: blinkingText 1.2s infinite;
+animation: blinkingText 1.2s infinite;
 }
 
 /* LANDING PAGE */
 
 form #name {
-  width: 380px;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-style: none;
-  background-color:rgba(96, 82, 252, 0.4);
-  
+width: 380px;
+padding: 10px;
+margin-bottom: 20px;
+border-style: none;
+background-color:rgba(96, 82, 252, 0.4);
+
 }
 
 form #name::placeholder {
-  color: white;
-  font-size: 1.2em;
-  /* font-weight: bold; */
-  letter-spacing: 1px;
+color: white;
+font-size: 1.2em;
+/* font-weight: bold; */
+letter-spacing: 1px;
 }
 
 form .button, button {
-  margin-top: 20px;
-  padding: 10px;
-  color: white;
-  background-color: rgb(21, 21, 162);
-  border: none;
-  font-size: 1em;
-  letter-spacing: 1px;
-  width: 210px;
+margin-top: 20px;
+padding: 10px;
+color: white;
+background-color: rgb(21, 21, 162);
+border: none;
+font-size: 1em;
+letter-spacing: 1px;
+width: 210px;
 }
 
 .submit-button-hover{
-  color: red;
-  background-color: rgb(226, 238, 248);
-  margin-top: 20px;
-  padding: 10px;
-  border: none;
-  font-size: 1em;
-  letter-spacing: 1px;
-  width: 210px;
-  cursor: url('imgs/icons8-space-fighter-24.png'), auto;
-  font-weight: bold;
-  text-transform: uppercase;
+color: red;
+background-color: rgb(226, 238, 248);
+margin-top: 20px;
+padding: 10px;
+border: none;
+font-size: 1em;
+letter-spacing: 1px;
+width: 210px;
+cursor: url('imgs/icons8-space-fighter-24.png'), auto;
+font-weight: bold;
+text-transform: uppercase;
 }
 
 label {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1.3em;
-  color:rgb(21, 21, 162)
+font-family: 'Press Start 2P', cursive;
+font-size: 1.3em;
+color:rgb(21, 21, 162)
 }
 
 .star {
-  padding: 10px;
-  margin: 0 20px 10px 20px; 
+padding: 10px;
+margin: 0 20px 10px 20px; 
 }
 
 
 /* CATEGORY PAGE */
 
 .grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
+display: grid;
+grid-template-columns: auto auto auto;
 }
 
 .grid-item {
-  padding: 10px;
-  font-weight: bold;
-  width: 270px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+font-weight: bold;
+width: 270px;
+height: 200px;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .grid-item img {
-  max-width: 100px;
+max-width: 100px;
 }
 
 .grid-p {
-  color: rgb(21, 21, 162);
-  padding: 20px;
-  margin: 0px;
-  font-family: 'Press Start 2P';
-  font-size: 1.3em;
-  text-transform: capitalize;
-  cursor: url('imgs/icons8-space-fighter-24.png'), auto;
+color: rgb(21, 21, 162);
+padding: 0px;
+margin: 0px;
+font-family: 'Press Start 2P';
+font-size: 1.2em;
+text-transform: capitalize;
+cursor: url('imgs/icons8-space-fighter-24.png'), auto;
 }
 
 .grid-p:hover {
-  color: red;
+color: red;
 }
 
 /* ANIMATION FONT */
 
 .blinking {
-  animation: blinkingText 1.2s infinite;
+animation: blinkingText 1.2s infinite;
 }
 
 @keyframes blinkingText{
-  0%{     color: rgb(0, 0, 255);    }
-  20%{    color: rgb(74, 74, 255); }
-  40%{    color: rgb(114, 114, 248); }
-  60%{    color: rgb(153, 162, 255); }
-  80%{    color: rgb(114, 114, 248);  }
-  90%{    color: rgb(74, 74, 255);  }
-  100%{   color: rgb(0, 0, 255);    }
+0%{     color: rgb(0, 0, 255);    }
+20%{    color: rgb(74, 74, 255); }
+40%{    color: rgb(114, 114, 248); }
+60%{    color: rgb(153, 153, 255); }
+80%{    color: rgb(114, 114, 248);  }
+90%{    color: rgb(74, 74, 255);  }
+100%{   color: rgb(0, 0, 255);    }
 }
 
 /* ZOE */
 .activity-display {
-  font-family: 'Press Start 2P', cursive;
-  background-color: blanchedalmond;
-  padding: 20%;
-  font-stretch: ultra-expanded;
+font-family: 'Press Start 2P', cursive;
+background-color: blanchedalmond;
+padding: 20%;
+font-stretch: ultra-expanded;
 }
 
 .activity-info button{
-   margin-top: 50px;
-   width: 250px;
-   height: auto;
+ margin-top: 50px;
+ width: 250px;
+ height: auto;
 }
 
 #price-page-header {
-  font-family: 'Press Start 2P', cursive;
-  background-color: blanchedalmond;
-  padding: 20%;
-  text-decoration: solid;
-}
-
-.activity-info a {
-  line-height: 1.8em;
+font-family: 'Press Start 2P', cursive;
+background-color: blanchedalmond;
+padding: 20%;
+text-decoration: solid;
 }
 
 /* Henry newly added css start */
 
 #game {
-  background-color: blanchedalmond;
-  height: 600px;
-  margin: 0 auto;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  width: 600px;
+background-color: blanchedalmond;
+height: 600px;
+margin: 0 auto;
+overflow: hidden;
+position: relative;
+text-align: center;
+width: 600px;
 }
 
 .gameImg{
-  position: absolute;
- }
+position: absolute;
+}
 
- #player {
-  background: url("imgs/megaman.png");
-  background-size: 100%;
-  width: 50px;
-  height: 47px;
-  position: absolute;
-  
-  
+#player {
+background: url("imgs/megaman.png");
+background-size: 100%;
+width: 50px;
+height: 47px;
+position: absolute;
+
+
 }
 /* Henry newly added css finish */
