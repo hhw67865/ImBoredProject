@@ -10,71 +10,30 @@ const pricePage = document.querySelector(".price-page");
 const activityDisplay = document.querySelector(".activity-display")
 const headerText = document.querySelector("#header-text");
 const activityDisplayInfo = document.querySelector(".activity-info");
-
 const submitButton = document.querySelector("#submit-button");
 const username = document.querySelector("#username");
-let firstTime = true;
 
-
-
-const categories = [
-    {
-        type: "education",
-        image: "./imgs/education.png"
-    },
-    {
-        type: "recreational",
-        image: "./imgs/recreational.png"
-    },
-    {
-        type: "social",
-        image: "./imgs/social.png"
-    },
-    {
-        type: "diy",
-        image: "./imgs/diy.png"
-    },
-    {
-        type: "charity",
-        image: "./imgs/charity.png"
-    },
-    {
-        type: "cooking",
-        image: "./imgs/cooking.png"
-    },
-    {
-        type: "relaxation",
-        image: "./imgs/relaxation.png"
-    },
-    {
-        type: "music",
-        image: "./imgs/music.png"
-    },
-    {
-        type: "busywork",
-        image: "./imgs/busywork.png"
-    }
-]
 
 //INITIATE FORM + SUBMIT BUTTON LISTENERS
 welcomeFormEvent();
 buttonTextEnter (submitButton, "Help!");
 buttonTextLeave (submitButton, "I'm so bored");
-createGridImages();
 howManyPeopleButtons()
 howMuchMoneyButton();
 createReset();
+
+//FETCH FOR CATEGORIES PAGE
+fetch("http://localhost:3000/grids")
+.then(res=>res.json())
+.then(categories => createGridImages(categories))
 
 //WELCOME FORM EVENT LISTENER
 function welcomeFormEvent () {
     welcomeForm.addEventListener("submit", e => {
         e.preventDefault();
-        
         welcomePage.classList.add("hide");
-    
         const categoryPage = document.querySelector(".category-page");
         categoryPage.classList.remove("hide");
-    
         let username = e.target.name.value;
         
         //HEADERS
@@ -87,29 +46,24 @@ function welcomeFormEvent () {
         const activityHeader = document.querySelector("#activity-page-header");
         activityHeader.innerHTML = `Here's a good activity for ya <span id = "username">${username}</span>!`
 
-
         welcomeForm.reset();
-
-        //CREATE IMAGES FOR NEXT PAGE
-        
     
     });
 }
 
-
-//CREATE IMAGES FOR CATEGORY ARRAY OBJECTS
-function createGridImages (){ 
+//CREATE IMAGES FOR CATEGORY PAGE
+function createGridImages (categories){ 
     const username = document.querySelector("#username");
+
+    //RENDER IMAGES AND TEXT ON CATEGORY PAGE
     categories.forEach(category => {
         const divGridItem = document.createElement("div");
-
         const image = document.createElement("img");
         image.src = category.image;
         image.id = category.type;
-
         divGridItem.append(image)
         divGridItem.classList.add("grid-item");
-        
+    
         gridContainer.append(divGridItem);
 
         const p = document.createElement("p");
@@ -122,13 +76,10 @@ function createGridImages (){
 
 //CLICK EVENT ON GRID IMAGES 
 function gridImageEventListener (p, image){
-    
     p.addEventListener("click", () => {
         categoryPage.classList.add("hide");
         peoplePage.classList.remove("hide");
-        selections.push(image.id);
-
-        
+        selections.push(image.id);  
     })
 }
 
@@ -151,8 +102,8 @@ function howManyPeopleButtons (){
     divPlayer.id = "player";
     divPlayer.style = "bottom: 20%; left: 50%;" 
     game.append(single, pair, group, divPlayer);
-
     
+    //GAME EVENT LISTENER 
     document.addEventListener("keydown", e=>{
         if (!peoplePage.classList.contains("hide"))
         {
@@ -170,92 +121,69 @@ function howManyPeopleButtons (){
                 divPlayer.style.transform = "";
                 const numbers = divPlayer.style.left.replace("%", "");
                 const move = parseInt(numbers, 10);
-                
                 if (move<90){
                 divPlayer.style.left = (`${move+5}%`);
-                
                 }  
-                        
-
             }
             if (e.key ==="ArrowDown") {
-
                 const numbers = divPlayer.style.bottom.replace("%", "");
                 const move = parseInt(numbers, 10);
                 if (move>0) {
                 divPlayer.style.bottom = (`${move-5}%`);
                 }
-
             }
             if (e.key ==="ArrowUp") {
-
                 const numbers = divPlayer.style.bottom.replace("%", "");
                 const move = parseInt(numbers, 10);
                 if (move<90){
                     divPlayer.style.bottom = (`${move+5}%`);
                 }
-            
-                
-
             }
-            //Player jumps on Single
-            if(divPlayer.style.left==="5%" && divPlayer.style.bottom>="45%" && divPlayer.style.bottom<="55%") {
-                            
-                
+            
+            //PLAYER REACHES SINGLE OPTION
+            if(divPlayer.style.left==="5%" && divPlayer.style.bottom>="45%" && divPlayer.style.bottom<="55%") { 
                 peoplePage.classList.add("hide");
                 pricePage.classList.remove("hide");
                 selections.push("1");
+                console.log("1");
                 
                 divPlayer.style = "bottom: 20%; left: 50%;"                                               
             }
-            //Player jumps on Pair
+            //PLAYER REACHES DOUBLE OPTION
             if(divPlayer.style.left>="45%" && divPlayer.style.left<="55%" && divPlayer.style.bottom>="80%" && divPlayer.style.bottom<="90%") {
-        
-                
                 peoplePage.classList.add("hide");
                 pricePage.classList.remove("hide");
                 selections.push("2");
-                
-                divPlayer.style = "bottom: 20%; left: 50%;"
-                                                    
+                divPlayer.style = "bottom: 20%; left: 50%;" 
+                console.log("2");                                   
             }
-            //Player jumps on Group
-            if(divPlayer.style.left>="80%" && divPlayer.style.left<="90%" && divPlayer.style.bottom>="45%" && divPlayer.style.bottom<="55%") {
-                            
-                
+            //PLAYER REACHES GROUP OPTION
+            if(divPlayer.style.left>="80%" && divPlayer.style.left<="90%" && divPlayer.style.bottom>="45%" && divPlayer.style.bottom<="55%") { 
                 peoplePage.classList.add("hide");
                 pricePage.classList.remove("hide");
-                selections.push(`${getRandomItem()}`);                
-                     
-                divPlayer.style = "bottom: 20%; left: 50%;"
-                                                
+                selections.push(`${getRandomItem()}`);                   
+                divPlayer.style = "bottom: 20%; left: 50%;" 
+                console.log("3");                                    
             }
-                
-
         }
-    })
-    
+    })   
 }
 
-//HOW MUCH MONEY PAGE
+// HOW MUCH MONEY PAGE
 function howMuchMoneyButton () {
     const divFree = document.createElement("div");
     divFree.innerHTML = `<button id="free">No Money</button>`;
-
     const divMoney = document.createElement("div");
     divMoney.innerHTML = `<button id="money">$</button>`;
-
     pricePage.append(divFree, divMoney);
 
     const moneyButton = document.querySelectorAll(".price-page button");
     buttonTextEnter(moneyButton[0], "Free plz!");
     buttonTextLeave(moneyButton[0], "No money" );
-
     buttonTextEnter(moneyButton[1], "I got some dough!");
     buttonTextLeave(moneyButton[1], "$");
 
     moneyButton.forEach((button)=> {
-
         button.addEventListener("click", ()=> {
             pricePage.classList.add("hide");
             activityDisplay.classList.remove("hide");
@@ -274,23 +202,18 @@ function howMuchMoneyButton () {
                 const activityType = boredActivity.type;
                 const activityDescription = boredActivity.activity;
                 const activityPrice = boredActivity.price;
-                
                 const activity_h2 = document.querySelector('#activity');
-
                 if (boredActivity.activity !== undefined){
                     activity_h2.innerText = activityDescription;
                 } else {
-                    activity_h2.innerHTML = `<a href="https://www.dictionary.com/">here ya go, do some light reading!</a>`;
+                    activity_h2.innerHTML = `<a href="https://www.dictionary.com/e/memes/">Why dontchya do some light reading!</a>`;
                 }  
-
             })
-
-            
         })
     })
-
 }
 
+//RESET PROGRAM FUNCTION
 function createReset() {
     const restartButton = document.createElement("button");
             const div = document.createElement("div");
@@ -299,27 +222,19 @@ function createReset() {
             buttonTextLeave(restartButton, "Give me another idea!");
             div.append(restartButton);
             activityDisplayInfo.append(div);
-            
-            
 
             restartButton.addEventListener("click", ()=> {
                 // location.reload();
                 activityDisplay.classList.add("hide");
                 welcomePage.classList.remove("hide");
-
-                
-
             })
 }
-
-
 
 //RANDOM NUMBER FOR 3+ PLAYERS
 function getRandomItem() {
     const items = [3, 4, 5, 8 ];
     return items[Math.floor(Math.random() * items.length)];
 }
-
 
 //GLOBAL BUTTON ON MOUSEENTER 
 function buttonTextEnter(button, buttonText = "") {
@@ -347,10 +262,6 @@ function buttonTextLeave(button, buttonText = "") {
     })
 }
 
-
-
-
-
 //CATEGORY PAGE DISPLAY TEXT ON MOUSEOVER 
 function gridDisplayText (image, p, category, divGridItem) {
     image.addEventListener("mouseover", ()=> {
@@ -363,4 +274,5 @@ function gridDisplayText (image, p, category, divGridItem) {
             divGridItem.removeChild(p);
         }, 500);
     })
+
 }

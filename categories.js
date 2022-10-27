@@ -1,0 +1,29 @@
+// const categories = [
+//     {   type: "education",
+//         image: "./imgs/education.png"
+//     },
+//     {   type: "recreational",
+//         image: "./imgs/recreational.png"
+//     },
+//     {   type: "social",
+//         image: "./imgs/social.png"
+//     },
+//     {   type: "diy",
+//         image: "./imgs/diy.png"
+//     },
+//     {   type: "charity",
+//         image: "./imgs/charity.png"
+//     },
+//     {   type: "cooking",
+//         image: "./imgs/cooking.png"
+//     },
+//     {   type: "relaxation",
+//         image: "./imgs/relaxation.png"
+//     },
+//     {   type: "music",
+//         image: "./imgs/music.png"
+//     },
+//     {   type: "busywork",
+//         image: "./imgs/busywork.png"
+//     }
+// ]

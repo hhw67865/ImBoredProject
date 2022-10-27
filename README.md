@@ -5,6 +5,8 @@ __Authors:__ [Henry Wu](https://github.com/hhw67865), [Lindsay Taylor](https://g
 
 __Date:__ October 26, 2022
 
+## Requirements
+Category information can be found in the db.json file. If needed, replace URI with local URI.
 
 
 ## Project Requirements

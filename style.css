@@ -1,21 +1,21 @@
 /* GLOBAL */
 body {
-  margin-top: 3em;
-  background-color: rgb(226, 238, 248);
-  display: flex;
-  justify-content: center;
-  font-family: 'Roboto';
-  cursor: url('imgs/icons8-space-fighter-24.png'), auto;
-  padding-bottom: 50px;
+margin-top: 3em;
+background-color: rgb(226, 238, 248);
+display: flex;
+justify-content: center;
+font-family: 'Roboto';
+cursor: url('imgs/icons8-space-fighter-24.png'), auto;
+padding-bottom: 50px;
 }
 .main-container {
-  text-align: center;
-  padding: 3em;
-  box-shadow: rgba(96, 82, 252, 0.4) 0px 10px 30px;
-  max-width: 850px;
-  width: 100%;
-  background-color: rgb(251, 251, 251);
-  margin-top: 50px;
+text-align: center;
+padding: 3em;
+box-shadow: rgba(96, 82, 252, 0.4) 0px 10px 30px;
+max-width: 850px;
+width: 100%;
+background-color: rgb(251, 251, 251);
+margin-top: 50px;
 }
 
 .hide {
@@ -97,7 +97,6 @@ grid-template-columns: auto auto auto;
 }
 
 .grid-item {
-
 font-weight: bold;
 width: 270px;
 height: 200px;
@@ -140,7 +139,7 @@ animation: blinkingText 1.2s infinite;
 100%{   color: rgb(0, 0, 255);    }
 }
 
-/* ZOE */
+/* ACTIVITY PAGE  */
 .activity-display {
 font-family: 'Press Start 2P', cursive;
 background-color: blanchedalmond;
@@ -149,9 +148,14 @@ font-stretch: ultra-expanded;
 }
 
 .activity-info button{
- margin-top: 50px;
- width: 250px;
- height: auto;
+margin-top: 50px;
+width: 250px;
+height: auto;
+}
+
+.activity-info a {
+line-height: 38px;
+font-size: 0.75em;
 }
 
 #price-page-header {
@@ -161,7 +165,7 @@ padding: 20%;
 text-decoration: solid;
 }
 
-/* Henry newly added css start */
+/* GAME PAGE  */
 
 #game {
 background-color: blanchedalmond;
@@ -171,6 +175,13 @@ overflow: hidden;
 position: relative;
 text-align: center;
 width: 600px;
+}
+
+#game-instructions {
+font-family: 'Roboto';
+font-size: 1.3em; 
+font-style: italic;
+color: rgb(21, 21, 162);
 }
 
 .gameImg{
@@ -183,7 +194,4 @@ background-size: 100%;
 width: 50px;
 height: 47px;
 position: absolute;
-
-
 }
-/* Henry newly added css finish */
