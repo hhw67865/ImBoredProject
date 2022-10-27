@@ -29,12 +29,21 @@ fetch("http://localhost:3000/grids")
 
 //WELCOME FORM EVENT LISTENER
 function welcomeFormEvent () {
+    const p = document.createElement("p");
+    welcomeForm.append(p);
+    p.textContent = " ";
     welcomeForm.addEventListener("submit", e => {
         e.preventDefault();
+        let username = e.target.name.value;
+        
+        if (username === ""){
+            p.textContent = "Please make sure to add your name!"
+            return;
+        }  
+        p.textContent = "";
         welcomePage.classList.add("hide");
         const categoryPage = document.querySelector(".category-page");
         categoryPage.classList.remove("hide");
-        let username = e.target.name.value;
         
         //HEADERS
         const categoryHeader = document.querySelector("#category-page-header");
@@ -70,13 +79,13 @@ function createGridImages (categories){
         p.classList.add("grid-p");
         gridDisplayText (image, p, category, divGridItem)
 
-        gridImageEventListener(divGridItem, image); 
+        gridImageEventListener(p, image); 
     })
 }
 
 //CLICK EVENT ON GRID IMAGES 
-function gridImageEventListener (divGridItem, image){
-    divGridItem.addEventListener("click", () => {
+function gridImageEventListener (p, image){
+    p.addEventListener("click", () => {
         categoryPage.classList.add("hide");
         peoplePage.classList.remove("hide");
         selections.push(image.id);  
