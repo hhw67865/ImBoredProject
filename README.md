@@ -6,8 +6,7 @@ __Authors:__ [Henry Wu](https://github.com/hhw67865), [Lindsay Taylor](https://g
 __Date:__ October 26, 2022
 
 ## Requirements
-Category information can be found in the db.json file. If needed, replace URI with local URI.
-
+Category information can be found in the db.json file. If needed, replace URI with local URI. Remember to turn on the server with the following terminal command ```json-server --watch db.json```.
 
 ## Project Requirements
 -   Your app must be a HTML/CSS/JS frontend that accesses data from a public API or from a db.json file using json-server. Your API or db.json should return a collection of at least 5 objects with each object having at least 3 attributes. All interactions between the client and the API should be handled asynchronously and use JSON as the communication format. Try to avoid using an API that requires a key. APIs that are free and require no authorization will be easiest to use. For ideas, see this list of no-auth APIsLinks to an external site.. If you would like to use an API that requires a key, please consult with your instructor on how to protect that key. NEVER push your API key to github!
