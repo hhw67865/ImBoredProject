@@ -215,7 +215,7 @@ function howMuchMoneyButton () {
                 if (boredActivity.activity !== undefined){
                     activity_h2.innerText = activityDescription;
                 } else {
-                    activity_h2.innerHTML = `<a href="https://www.dictionary.com/e/memes/">Why dontchya do some light reading!</a>`;
+                    activity_h2.innerHTML = `<a href="https://www.dictionary.com/e/memes/" target="_blank">Why dontchya do some light reading!</a>`;
                 }  
             })
         })
