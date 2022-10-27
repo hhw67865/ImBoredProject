@@ -70,13 +70,13 @@ function createGridImages (categories){
         p.classList.add("grid-p");
         gridDisplayText (image, p, category, divGridItem)
 
-        gridImageEventListener(p, image); 
+        gridImageEventListener(divGridItem, image); 
     })
 }
 
 //CLICK EVENT ON GRID IMAGES 
-function gridImageEventListener (p, image){
-    p.addEventListener("click", () => {
+function gridImageEventListener (divGridItem, image){
+    divGridItem.addEventListener("click", () => {
         categoryPage.classList.add("hide");
         peoplePage.classList.remove("hide");
         selections.push(image.id);  
